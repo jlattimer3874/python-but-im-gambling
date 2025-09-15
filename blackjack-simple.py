@@ -51,16 +51,24 @@ while start not in ["yes","no","instructions"]:
 ##startup process
 print("Dealing hands...")
 time.sleep(2.5)
-print("Your hand is:"hand)
+print("Your hand is: {}".format(hand))
+while hand < 21 and dealerhand < 21:
+    hitorstand = input("That's your hand. Would you like to hit or stand?")
+    while hitorstand not in ["hit","stand"]:
+        if hitorstand == "hit":
+            print("You hit.")
+            hand += random.randint(1,11)
 
-hitorstand = input("That's your hand. Would you like to hit or stand?")
-while hitorstand not in ["hit","stand"]:
-    if hitorstand == "hit":
-        print("You hit.")
-        hand += random.randint(1,11)
+            break
+        elif hitorstand == "stand":
+            print("You stand.")
 
-        break
-    elif hitorstand == "stand":
+            break
+        else:
+            print("Hit. Or. Stand.")
+
+    
+        
 
 
 

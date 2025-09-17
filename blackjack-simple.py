@@ -1,5 +1,6 @@
 import random
 import time
+import sys
 # setting vars
 #card = random.randint(1,11)
 hand = random.randint(2,21)
@@ -8,16 +9,22 @@ playerwins = 0
 dealerwins = 0
 ties = 0
 hands = 0
+closeProgram = False
 #this is for if i don't catch anything, and something isn't attributed properly
 whoopsies = 0
 
 #Asks whether or not you want to start
-start = input("Welcome to Blackjack! I'm going to assume you know how to play. If you don't, type 'instructions'. \n IMPORTANT: Unfortunately I haven't been able to code aces yet. \nImagine, if you will, Aces are worth 1 and there are 4 jokers worth 11. Thank you! \n Now, would you like to play?  ")
+start = input("Welcome to Blackjack! I'm going to assume you know how to play. If you don't, type 'instructions'. " \
+"\nIMPORTANT: Unfortunately I haven't been able to code aces yet. " \
+"\nImagine, if you will, Aces are worth 1 and there are 4 jokers worth 11. Thank you! " \
+"\nNow, would you like to play?  ")
 
 while start not in ["yes","no","instructions"]:
     if start == "no":
-        print("Then why'd you open the program?")
-        quit
+        print("Then why'd you even open the program?")
+        closeProgram = True ## i'm only leaving this comment here instead of the others so i don't have to re-write it, but any sort of quit or even raising the SystemExit will only kill the current thread
+        
+        
 
 
     elif start == "instructions":
@@ -39,13 +46,17 @@ while start not in ["yes","no","instructions"]:
                 print("Good.")
             elif instructYorN == "no":
                 print("God*#%@it")
-                quit
+                
             else:
                 print("'K man, I'm asking you a question. could you answer me please?")       
     elif start == "yes":
         print("Alright, let's get started.")
     else:
          print("Dude, c'mon, just pick one please")    
+
+## this is for closing the program, since i can't close it from within a thread, all it does is check for the closeProgram boolean and if true, ACTUALLY quits the damn thing. what the fuck, why can't i terminate the whole thing 
+## from within a thread??? fucking coding languages making me pissed off. GRAHHHH i'm so mad
+
 
 
 ##startup process
@@ -59,53 +70,26 @@ while hand < 21 and dealerhand < 21:
             print("You hit.")
             hand += random.randint(1,11)
 
-            break
         elif hitorstand == "stand":
             print("You stand.")
 
-            break
         else:
             print("Hit. Or. Stand.")
 
+    if hand > 21: 
+        print("Sorry man. Your hand busted by ", hand - 21)
+        playerwins = playerwins +1
     
+    if dealerhand > 21:
+        print("Congradulations, the dealer busted by", dealerhand - 21)
+        dealerwins = dealerwins +1
         
 
 
 
 
 
-hand += random.randint()
 
-
- # win/lose conditions
-      #player
-if 17 <= hand <= 21 and hand > dealerhand:
-    
-    
-    #dealer
-elif 17 <= dealerhand <= 21 and hand < dealerhand:
-    
-
-        #for the player busting. dealer can't bust, that's like the real world! never gamble, kids.
-elif hand > 21 and dealerhand <= 21:
-     
-
-        #just kidding! the dealer CAN lose. 
-elif dealerhand > 21 and hand <= 21:
-     
-
-        #this is ties.
-elif dealerhand == hand:
-       
-
-        #if both players bust
-elif dealerhand and hand > 21:
-       
-
-
-    #for catching any missed situations                                            
-else:
-   whoopsies += 1
     
 
 

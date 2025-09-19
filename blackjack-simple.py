@@ -13,8 +13,10 @@ hands = 0
 closeProgram = False
 answersWrong = 0
 start = 0
+hitorstand = 0
 # defining functions time!
 def notInAnswerList():
+
     global answersWrong
     if answersWrong == 0:
         print("That's not what I asked, try again!")
@@ -39,7 +41,31 @@ def notInAnswerList():
     elif answersWrong == 5:
         print("NOPE! THAT'S IT! I gave you FIVE chances, and you BLEW it. I'm done with this garbage, so help me God.")
         quit()
+def gameplay():
+    global hitorstand
+    while hand < 21 and dealerhand < 21:
+        hitorstand = input("Hit or stand?")
+        while hitorstand not in ["hit","stand"]:
+            notInAnswerList()
+            hitorstand = input("Hit. Or. Stand. ")
 
+        while hitorstand in ["hit","stand"]:
+            if hitorstand == "hit":
+                print("You hit.")
+                hand += random.randint(1,11)
+                break
+
+            elif hitorstand == "stand":
+                print("You stand.")
+                break
+
+    if hand > 21: 
+     print("Sorry man. Your hand busted by ", hand - 21)
+     playerwins = playerwins +1
+    
+    elif dealerhand > 21:
+     print("Congradulations, the dealer busted by", dealerhand - 21)
+     dealerwins = dealerwins +1
 
 
 #Asks whether or not you want to start
@@ -56,9 +82,6 @@ while start in ["yes","no","instructions"]:
     if start == "no":
         print("Then why'd you even open the program?")
         quit()
-        
-        
-
 
     elif start == "instructions":
         print("In Blackjack, everyone plays against the dealer. Players receive all cards face up, and the dealer’s first card is face up and the second is face down. " \
@@ -74,6 +97,11 @@ while start in ["yes","no","instructions"]:
         "\nthe type of Blackjack you are playing." \
         "\n these instructions were sourced from : https://www.venetianlasvegas.com/resort/casino/table-games/how-to-play-blackjack.html")
         instructYorN = input("Alright then. Would you like to get started? ")
+
+        while instructYorN not in ["yes,","no"]:
+            notInAnswerList()
+            instructYorN = input("Yes or no? ")
+
         while instructYorN in ["yes","no"]:
             if instructYorN == "yes":
                 print("Good.")
@@ -99,36 +127,4 @@ while start in ["yes","no","instructions"]:
 print("Dealing hands...")
 time.sleep(1.5)
 print("Your hand is: {}".format(hand))
-while hand < 21 and dealerhand < 21:
-    hitorstand = input("Hit or stand?")
-    if hitorstand != "hit" or "stand":
-        print("I asked if you want to ")
-    while hitorstand in ["hit","stand"]:
-        if hitorstand == "hit":
-            print("You hit.")
-            hand += random.randint(1,11)
-            break
-
-        elif hitorstand == "stand":
-            print("You stand.")
-            break
-
-
-
-    if hand > 21: 
-        print("Sorry man. Your hand busted by ", hand - 21)
-        playerwins = playerwins +1
-    
-    if dealerhand > 21:
-        print("Congradulations, the dealer busted by", dealerhand - 21)
-        dealerwins = dealerwins +1
-        
-
-
-
-
-
-
-    
-
-
+gameplay()

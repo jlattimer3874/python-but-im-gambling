@@ -23,8 +23,7 @@ start = input("Welcome to Blackjack! I'm going to assume you know how to play. I
 while start in ["yes","no","instructions"]:
     if start == "no":
         print("Then why'd you even open the program?")
-        closeProgram = True ## i'm only leaving this comment here instead of the others so i don't have to re-write it, but any sort of quit or even raising the SystemExit will only kill the current thread
-        break
+        quit()
         
         
 
@@ -48,8 +47,8 @@ while start in ["yes","no","instructions"]:
                 print("Good.")
             elif instructYorN == "no":
                 print("God*#%@it")
-                closeProgram = True
-                break
+                
+                quit()
                 
             else:
                 print("'K man, I'm asking you a question. could you answer me please?")       
@@ -58,8 +57,7 @@ while start in ["yes","no","instructions"]:
     else:
          print("Dude, c'mon, just pick one please")    
 
-## this is for closing the program, since i can't close it from within a thread, all it does is check for the closeProgram boolean and if true, ACTUALLY quits the damn thing. what the fuck, why can't i terminate the whole thing 
-## from within a thread??? fucking coding languages making me pissed off. GRAHHHH i'm so mad
+
 
 
 

@@ -3,7 +3,7 @@ import time
 import sys
 import os
 # setting vars
-#card = random.randint(1,11)
+card = random.randint(1,11)
 hand = random.randint(2,21)
 dealerhand = random.randint(2,21)
 playerwins = 0
@@ -11,14 +11,46 @@ dealerwins = 0
 ties = 0
 hands = 0
 closeProgram = False
-#this is for if i don't catch anything, and something isn't attributed properly
-whoopsies = 0
+answersWrong = 0
+start = 0
+# defining functions time!
+def notInAnswerList():
+    global answersWrong
+    if answersWrong == 0:
+        print("That's not what I asked, try again!")
+        answersWrong += 1
+
+    elif answersWrong == 1:
+        print("That's still not what I asked, try again please!")
+        answersWrong += 1
+    
+    elif answersWrong == 2:
+        print("That's STILL not what I'm asking. Please, try again.")
+        answersWrong += 1
+    
+    elif answersWrong == 3:
+        print("Ok, still not what I'm asking. It can't be THAT hard, can it? Please, just pick one. I'm tired.")
+        answersWrong += 1
+    
+    elif answersWrong == 4:
+        print("Alright. I'm giving you ONE more chance. Either pick a goddamn answer, or I'll quit() myself. I'm not playing, alright?")
+        answersWrong += 1
+    
+    elif answersWrong == 5:
+        print("NOPE! THAT'S IT! I gave you FIVE chances, and you BLEW it. I'm done with this garbage, so help me God.")
+        quit()
+
+
 
 #Asks whether or not you want to start
 start = input("Welcome to Blackjack! I'm going to assume you know how to play. If you don't, type 'instructions'. " \
 "\nIMPORTANT: Unfortunately I haven't been able to code aces yet. " \
 "\nImagine, if you will, Aces are worth 1 and there are 4 jokers worth 11. Thank you! " \
 "\nNow, would you like to play? ")
+
+while start not in ["yes","no","instructions"]:
+    notInAnswerList()
+    start = input("Would you like to start?")
 
 while start in ["yes","no","instructions"]:
     if start == "no":
@@ -51,17 +83,13 @@ while start in ["yes","no","instructions"]:
                 time.sleep(1)
                 print("Screw you, man.")
                 quit()
-                
-            else:
-                print("'K man, I'm asking you a question. could you answer me please?")      
-            
+                  
             break
 
     elif start == "yes":
         print("Alright, let's get started.")
         break
-    else:
-         print("Dude, c'mon, just pick one please")    
+      
 
 
 
@@ -72,7 +100,9 @@ print("Dealing hands...")
 time.sleep(1.5)
 print("Your hand is: {}".format(hand))
 while hand < 21 and dealerhand < 21:
-    hitorstand = input("That's your hand. Would you like to hit or stand? ")
+    hitorstand = input("Hit or stand?")
+    if hitorstand != "hit" or "stand":
+        print("I asked if you want to ")
     while hitorstand in ["hit","stand"]:
         if hitorstand == "hit":
             print("You hit.")

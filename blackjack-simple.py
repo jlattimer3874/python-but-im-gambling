@@ -18,7 +18,7 @@ whoopsies = 0
 start = input("Welcome to Blackjack! I'm going to assume you know how to play. If you don't, type 'instructions'. " \
 "\nIMPORTANT: Unfortunately I haven't been able to code aces yet. " \
 "\nImagine, if you will, Aces are worth 1 and there are 4 jokers worth 11. Thank you! " \
-"\nNow, would you like to play?  ")
+"\nNow, would you like to play? ")
 
 while start in ["yes","no","instructions"]:
     if start == "no":
@@ -41,19 +41,25 @@ while start in ["yes","no","instructions"]:
         "\nIf your initial two cards total 21, any Ace with a 10, Jack, Queen, or King, you have a Blackjack. Blackjack is paid either 6 to 5 or 3 to 2, depending on" \
         "\nthe type of Blackjack you are playing." \
         "\n these instructions were sourced from : https://www.venetianlasvegas.com/resort/casino/table-games/how-to-play-blackjack.html")
-        instructYorN = input("Alright then. Would you like to get started?")
+        instructYorN = input("Alright then. Would you like to get started? ")
         while instructYorN in ["yes","no"]:
             if instructYorN == "yes":
                 print("Good.")
+                break
             elif instructYorN == "no":
                 print("God*#%@it")
-                
+                time.sleep(1)
+                print("Screw you, man.")
                 quit()
                 
             else:
-                print("'K man, I'm asking you a question. could you answer me please?")       
+                print("'K man, I'm asking you a question. could you answer me please?")      
+            
+            break
+
     elif start == "yes":
         print("Alright, let's get started.")
+        break
     else:
          print("Dude, c'mon, just pick one please")    
 
@@ -63,20 +69,21 @@ while start in ["yes","no","instructions"]:
 
 ##startup process
 print("Dealing hands...")
-time.sleep(2.5)
+time.sleep(1.5)
 print("Your hand is: {}".format(hand))
 while hand < 21 and dealerhand < 21:
-    hitorstand = input("That's your hand. Would you like to hit or stand?")
-    while hitorstand not in ["hit","stand"]:
+    hitorstand = input("That's your hand. Would you like to hit or stand? ")
+    while hitorstand in ["hit","stand"]:
         if hitorstand == "hit":
             print("You hit.")
             hand += random.randint(1,11)
+            break
 
         elif hitorstand == "stand":
             print("You stand.")
+            break
 
-        else:
-            print("Hit. Or. Stand.")
+
 
     if hand > 21: 
         print("Sorry man. Your hand busted by ", hand - 21)
@@ -95,5 +102,3 @@ while hand < 21 and dealerhand < 21:
     
 
 
-##print("The total number of dealer wins was {}. The total number of player wins was {}. The total number of ties was {}.".format(dealerwins,playerwins,ties))
-##print("you made {} whoopsies".format(whoopsies))

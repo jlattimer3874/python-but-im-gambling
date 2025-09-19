@@ -1,6 +1,7 @@
 import random
 import time
 import sys
+import os
 # setting vars
 #card = random.randint(1,11)
 hand = random.randint(2,21)
@@ -19,10 +20,11 @@ start = input("Welcome to Blackjack! I'm going to assume you know how to play. I
 "\nImagine, if you will, Aces are worth 1 and there are 4 jokers worth 11. Thank you! " \
 "\nNow, would you like to play?  ")
 
-while start not in ["yes","no","instructions"]:
+while start in ["yes","no","instructions"]:
     if start == "no":
         print("Then why'd you even open the program?")
         closeProgram = True ## i'm only leaving this comment here instead of the others so i don't have to re-write it, but any sort of quit or even raising the SystemExit will only kill the current thread
+        break
         
         
 
@@ -41,11 +43,13 @@ while start not in ["yes","no","instructions"]:
         "\nthe type of Blackjack you are playing." \
         "\n these instructions were sourced from : https://www.venetianlasvegas.com/resort/casino/table-games/how-to-play-blackjack.html")
         instructYorN = input("Alright then. Would you like to get started?")
-        while instructYorN not in ["yes","no"]:
+        while instructYorN in ["yes","no"]:
             if instructYorN == "yes":
                 print("Good.")
             elif instructYorN == "no":
                 print("God*#%@it")
+                closeProgram = True
+                break
                 
             else:
                 print("'K man, I'm asking you a question. could you answer me please?")       
